@@ -5,7 +5,7 @@ public class
     WizzardScript : MonoBehaviour
 {
     [SerializeField] private GameObject fireballPrefab;
-    [SerializeField] private GameObject player;
+    private Transform playerTransform;
     [SerializeField] private Transform shrinkingSpawnArea;
     [SerializeField] private GameObject spawnArea;
     [SerializeField] private float spawnAreaShrinkDuration = 2f;
@@ -33,14 +33,22 @@ public class
     
     private bool _canWalk = false;
     
-    [SerializeField] private float armagedonCastInterval = 1f;
-    [SerializeField] private int numberOfFBInArmagedon = 8;
+    [SerializeField] private float FireballLineCastInterval = 1f;
+    [SerializeField] private int numberOfFBInFireballsInLine = 8;
     private Spells spell;
-    
+
+    [SerializeField] private int armagedonFireballCount = 6;
+    [SerializeField] private float armagedonInterval = 1f;
+
     private enum Spells
     {
         Armagedon = 0,
         FireballLine = 1
+    }
+
+    public void Init(Transform player)
+    {
+        playerTransform = player;
     }
 
     void Start()
@@ -52,7 +60,7 @@ public class
         direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         _walkDuration = Random.Range(minWalkDuration, maxWalkDuration);
         
-        Spells spell = (Spells)Random.Range(0, 0);
+        spell = (Spells)Random.Range(0, 2);
         _castDelay = Random.Range(minCastDelay, maxCastDelay);
     }
 
@@ -93,7 +101,7 @@ public class
 
     bool IsClose()
     {
-        return !DespawnHelper.IsInside(transform.position, 0.5f);
+        return !DespawnHelper.IsInside(transform.position, 0.2f);
     }
     
 
@@ -134,6 +142,7 @@ public class
                         yield return StartCoroutine(FireballLineRoutine());
                         break;   
                 }
+                spell = (Spells)Random.Range(0, 2);
                 currentCastTime = 0f;
             }
             yield return null;
@@ -162,16 +171,16 @@ public class
         Destroy(gameObject);
     }
 
-    private IEnumerator ArmagedonRoutine()
+    private IEnumerator FireballLineRoutine()
     {
 
         int currentNumber = 0;
         _canWalk = false;
         rb.linearVelocity = Vector3.zero;
-        Vector2 castDirection = -(transform.position - player.transform.position).normalized * 1.5f;
+        Vector2 castDirection = -(transform.position - playerTransform.position).normalized * 1.5f;
         Vector2 castPosition = (Vector2)transform.position + castDirection;
 
-        while (currentNumber < numberOfFBInArmagedon)
+        while (currentNumber < numberOfFBInFireballsInLine)
         {
 
             if (!DespawnHelper.IsInside(castPosition, -1f))
@@ -184,7 +193,7 @@ public class
                 _canWalk = true;
             }
 
-            yield return new WaitForSeconds(armagedonCastInterval);
+            yield return new WaitForSeconds(FireballLineCastInterval);
             GameObject fireballObj =  Instantiate(fireballPrefab, new Vector2(0,0), Quaternion.identity);
             BurningAreaScript fireballScript = fireballObj.GetComponent<BurningAreaScript>();
             fireballScript.ShootFireball(transform.position, castPosition);
@@ -193,9 +202,22 @@ public class
         _canWalk = true;
     }
 
-    private IEnumerator FireballLineRoutine()
+    private IEnumerator ArmagedonRoutine()
     {
-        return null;
+        _canWalk = false;
+        rb.linearVelocity =  Vector3.zero;
+        int count = 0;
+        while (count < armagedonFireballCount)
+        {
+            yield return new WaitForSeconds(armagedonInterval);
+            GameObject fireballObj =  Instantiate(fireballPrefab, new Vector2(0,0), Quaternion.identity);
+            BurningAreaScript fireballScript = fireballObj.GetComponent<BurningAreaScript>();
+            fireballScript.ShootFireball(transform.position, playerTransform.position);
+            count++;
+        }
+        _canWalk = true;
+
     }
+
     
 }
