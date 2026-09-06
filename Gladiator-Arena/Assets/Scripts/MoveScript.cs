@@ -77,7 +77,7 @@ public class MoveScript : MonoBehaviour
 
     void MakeDash()
     {
-        if (state != MovementState.Classic) return;
+        if (state != MovementState.Classic || input == Vector2.zero) return;
         
         if (PlayerStaminaScript.SpendStamina(DashStaminaCost))
         {
