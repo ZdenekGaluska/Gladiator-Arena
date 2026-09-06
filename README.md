@@ -1,48 +1,49 @@
 # Gladiator Arena
 
-Top-down 2D aréna, ve které hráč čelí nekonečným vlnám prostředí, které funguje
-jako nepřítel — bez klasické AI a pathfindingu. Inspirováno bullet-hell/danmaku
-žánrem a hrami jako Vampire Survivors: přežíváš čtením telegrafovaných hrozeb
-a rizikovým pohybem, ne silou postavy.
+A top-down 2D arena in which the player faces endless waves of the environment
+acting as the enemy — no conventional AI, no pathfinding. Inspired by the
+bullet-hell/danmaku genre and games like Vampire Survivors: you survive by
+reading telegraphed threats and moving riskily, not through character power.
 
-Sólo projekt, aktuálně v aktivním vývoji (WIP). Vizuál je zatím čistě
-placeholder (primitivní tvary, žádné sprity) — vývoj se zatím soustředí na
-herní systémy a logiku, ne na art.
+A solo project, currently in active development (WIP). The visuals are pure
+placeholder for now (primitive shapes, no sprites) — development is focused on
+game systems and logic rather than art.
 
-## Stav projektu
+## Project status
 
-**Hotovo:**
-- WASD pohyb s hranicí arény (eliptická aréna, clamping)
-- Dash-roll (stamina-gated úhyb)
-- Systém staminy
-- Čtyři typy nepřátel:
-  - **Walker** — jednoduchý průchod mapou
-  - **Archer** — pohyb po kruhové dráze, zaměří a vystřelí na pozici hráče s telegrafem
-  - **Wizard** — dva typy kouzel (plošný "Armagedon" výbuch, "Firewall" formace ohnivých koulí)
-  - **Mortar** — po celou dobu runu vrhá telegrafované fireballs do okolí hráče
-- HP systém s invincibility frames podle typu poškození
-- UI: zdraví, stamina, časovač skóre
+**Done:**
+- WASD movement with arena bounds (elliptical arena, clamping)
+- Dash-roll (stamina-gated dodge)
+- Stamina system
+- Four enemy types:
+  - **Walker** — a simple pass across the map
+  - **Archer** — moves along a circular path, aims and fires at the player's position with a telegraph
+  - **Wizard** — two spell types (the "Armageddon" area blast and the "Firewall" formation of fireballs)
+  - **Mortar** — throws telegraphed fireballs around the player for the entire run
+- HP system with invincibility frames per damage type
+- UI: health, stamina, score timer
 
-**Rozpracováno / TODO:**
-- Hook swing a parry (zatím jen připravený stav v pohybovém systému, bez funkčnosti)
-- Další typy nepřátel (Legionaries, Cannibal, Horseman — navrženo v DESIGN.md)
-- Menu, art (aktuálně placeholder sprity a primitiva)
-- Vyvážení obtížnosti a spawn systému
+**In progress / TODO:**
+- Hook swing and parry (only a prepared state in the movement system so far, no functionality)
+- More enemy types (Legionaries, Cannibal, Horseman — designed in DESIGN.md)
+- Menus, art (currently placeholder sprites and primitives)
+- Difficulty and spawn system balancing
 
-Návrhový dokument s kompletním rozborem mechanik a nepřátel je v [DESIGN.md](DESIGN.md).
+The design document with a full breakdown of the mechanics and enemies is in
+[DESIGN.md](DESIGN.md).
 
-## Technologie
+## Tech
 
 - Unity 6 (Universal Render Pipeline, 2D)
 - C#
 - Legacy Input Manager
 
-## Spuštění
+## Running the project
 
-1. Naklonuj repo
-2. Otevři složku `no-name-game/` v Unity Hubu (vyžaduje Unity `6000.5.2f1` nebo novější Unity 6)
-3. Otevři scénu `Assets/Scenes/ArenaScene.unity` a spusť Play
+1. Clone the repo
+2. Open the `no-name-game/` folder in Unity Hub (requires Unity `6000.5.2f1` or newer Unity 6)
+3. Open the scene `Assets/Scenes/ArenaScene.unity` and hit Play
 
-## Licence
+## License
 
-MIT — viz [LICENSE](LICENSE)
+MIT — see [LICENSE](LICENSE)

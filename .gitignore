@@ -114,7 +114,8 @@ desktop.ini
 $RECYCLE.BIN/
 
 # Vlastní ignorovaná pravidla pro tento projekt
-no-name-game/Assets/_Recovery/
-no-name-game/Assets/_Recovery.meta
-no-name-game/Assets/TextMesh Pro/Examples & Extras/
-no-name-game/Assets/TextMesh Pro/Examples & Extras.meta
+# (** = libovolná hloubka / jméno nadřazené složky, nezávislé na přejmenování projektu)
+**/_Recovery/
+**/_Recovery.meta
+**/TextMesh Pro/Examples & Extras/
+**/TextMesh Pro/Examples & Extras.meta
