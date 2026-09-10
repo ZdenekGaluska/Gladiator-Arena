@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WizardSpawnerScript : MonoBehaviour
+public class WizardSpawner : MonoBehaviour
 {
     [SerializeField] private float spawnInterval = 15f;
     private float currentTime = 0f;
@@ -26,7 +26,7 @@ public class WizardSpawnerScript : MonoBehaviour
             float r = Mathf.Sqrt(Random.value);
             Vector2 spawnPosition = new Vector2(Mathf.Cos(angle) * r * xMapSize, Mathf.Sin(angle) * r * yMapSize);
             GameObject wizardObj = Instantiate(wizardPrefab, spawnPosition, transform.rotation);
-            wizardObj.GetComponent<WizzardScript>().Init(playerTransform);
+            wizardObj.GetComponent<Wizard>().Init(playerTransform);
             currentTime = 0f;
         }
     }

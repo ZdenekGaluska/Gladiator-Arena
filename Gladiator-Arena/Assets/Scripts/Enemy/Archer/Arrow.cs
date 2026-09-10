@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class ArrowScript : MonoBehaviour
+public class Arrow : MonoBehaviour
 {
     public float arrowSpeed = 6f;
     private Rigidbody2D _rb;

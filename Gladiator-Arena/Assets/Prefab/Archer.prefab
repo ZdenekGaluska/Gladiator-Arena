@@ -298,7 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   arrowPrefab: {fileID: 3493679111465727973, guid: 991c5b3ccbcfcd1d99c162a8fc026242, type: 3}
   playerTransform: {fileID: 0}
-  arrowTrajectoryScript: {fileID: 938807522080145200}
+  arrowTrajectory: {fileID: 938807522080145200}
   minWalkDuration: 4
   maxWalkDuration: 6
   aimDuration: 1
@@ -312,6 +312,8 @@ MonoBehaviour:
   driftSign: 0
   driftStart: 0
   currentDirection: {x: 0, y: 0}
+  audioSource: {fileID: 0}
+  bowDrawAndShootClip: {fileID: 0}
 --- !u!50 &7208208981411356016
 Rigidbody2D:
   serializedVersion: 5

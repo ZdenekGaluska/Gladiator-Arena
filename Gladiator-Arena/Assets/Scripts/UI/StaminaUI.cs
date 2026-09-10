@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class UIStaminaScript : MonoBehaviour
+public class StaminaUI : MonoBehaviour
 {
 
     private TextMeshProUGUI _staminaText;

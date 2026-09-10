@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WalkerSpawnerScript : MonoBehaviour
+public class WalkerSpawner : MonoBehaviour
 {
     public SpriteRenderer MapRenderer;
     private float arenaRadius;
@@ -22,7 +22,7 @@ public class WalkerSpawnerScript : MonoBehaviour
             float angle = Random.Range(0, 2 * Mathf.PI);
             Vector2 spawnPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * arenaRadius;
             GameObject walkerObj =  Instantiate(walkerPrefab, spawnPosition, Quaternion.identity);
-            WalkerMovementScript walker = walkerObj.GetComponent<WalkerMovementScript>();      
+            Walker walker = walkerObj.GetComponent<Walker>();      
             walker.Init(arenaRadius);
         }
     }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerHealthScript : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     public int health = 3;
     private int _currentHealth;
@@ -26,11 +26,11 @@ public class PlayerHealthScript : MonoBehaviour
         { DamageSourceType.Hazard, 0f }
     };
 
-    public HealthUiScript healthUIScript;
+    public HealthUI healthUI;
     
     void Start()
     {
-        healthUIScript.UpdateText(health, health);
+        healthUI.UpdateText(health, health);
         _currentHealth = health;
     }
 
@@ -44,7 +44,7 @@ public class PlayerHealthScript : MonoBehaviour
 
                 _currentTimeToReg = 0f;
                 _currentHealth++;
-                healthUIScript.UpdateText(_currentHealth, health);
+                healthUI.UpdateText(_currentHealth, health);
             }
         }
     }
@@ -58,7 +58,7 @@ public class PlayerHealthScript : MonoBehaviour
         _currentHealth -= 1;
         _currentTimeToReg = 0f;
         
-        healthUIScript.UpdateText(_currentHealth, health);
+        healthUI.UpdateText(_currentHealth, health);
         if (_currentHealth <= 0)
         {
             _isAlive = false;

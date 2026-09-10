@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArcherSpawnerScript : MonoBehaviour
+public class ArcherSpawner : MonoBehaviour
 {
     public SpriteRenderer MapRenderer;
     private float arenaRadius;
@@ -23,7 +23,7 @@ public class ArcherSpawnerScript : MonoBehaviour
             float angle = Random.Range(0f, 2f * Mathf.PI);
             Vector2 spawnPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * arenaRadius;
             GameObject archerObj = Instantiate(archerPrefab, spawnPosition, Quaternion.identity);
-            archerObj.GetComponent<ArcherScript>().Init(playerTransform);
+            archerObj.GetComponent<Archer>().Init(playerTransform);
         }
     }
 }

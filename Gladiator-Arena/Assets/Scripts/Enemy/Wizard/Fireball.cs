@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-public class BurningAreaScript : MonoBehaviour
+public class Fireball : MonoBehaviour
 {
     [SerializeField] private float MinThrowDuration = 2f;
     [SerializeField] private float throwSpeed = 5f; 

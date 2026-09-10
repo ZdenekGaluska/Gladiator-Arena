@@ -3,12 +3,12 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ArcherScript : MonoBehaviour
+public class Archer : MonoBehaviour
 {
     public GameObject arrowPrefab;
     private Rigidbody2D rb;
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private ArrowTrajectoryScript arrowTrajectoryScript;
+    [SerializeField] private ArrowTrajectory arrowTrajectory;
 
     [SerializeField] private float minWalkDuration = 4f;
     [SerializeField] private float maxWalkDuration = 6f;
@@ -27,6 +27,9 @@ public class ArcherScript : MonoBehaviour
     [SerializeField] private bool driftSign;
     [SerializeField] private float driftStart;
     [SerializeField] private Vector2 currentDirection;
+    
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip bowDrawAndShootClip;
 
     public void Init(Transform player)
     {
@@ -101,16 +104,18 @@ public class ArcherScript : MonoBehaviour
     
     private void Aim()
     {
-        arrowTrajectoryScript.DrawShootingTrajectory(transform.position, playerTransform.position);
+        audioSource.PlayOneShot(bowDrawAndShootClip);
+        arrowTrajectory.DrawShootingTrajectory(transform.position, playerTransform.position);
         shootDirection = playerTransform.position - transform.position;
+        
     }
     
     private void Shoot()
     {
         GameObject arrowObj = Instantiate(arrowPrefab, transform.position, transform.rotation);
-        ArrowScript arrowScript = arrowObj.GetComponent<ArrowScript>();
-        arrowScript.ShootArrow(shootDirection);        
-        arrowTrajectoryScript.EraseShootingTrajectory();
+        Arrow arrow = arrowObj.GetComponent<Arrow>();
+        arrow.ShootArrow(shootDirection);        
+        arrowTrajectory.EraseShootingTrajectory();
     }
     
 }

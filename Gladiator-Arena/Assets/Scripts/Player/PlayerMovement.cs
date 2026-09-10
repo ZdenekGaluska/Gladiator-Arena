@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class MoveScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 input;
     public float speed = 2f;
-    private PlayerHealthScript _playerHealthScript;
-    public ArenaBoundaryScript ArenaBoundaryScript;
+    private PlayerHealth _playerHealth;
+    public ArenaBoundary arenaBoundary;
     
 
     public enum MovementState
@@ -24,12 +24,12 @@ public class MoveScript : MonoBehaviour
     public float DashSpeed = 15f;
     private Vector2 _dashDirection;
 
-    public PlayerStaminaScript PlayerStaminaScript;
+    public PlayerStamina playerStamina;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _playerHealthScript = GetComponent<PlayerHealthScript>();
+        _playerHealth = GetComponent<PlayerHealth>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -50,7 +50,7 @@ public class MoveScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!_playerHealthScript.IsAlive)
+        if (!_playerHealth.IsAlive)
         {
             rb.linearVelocity = Vector2.zero;
             return;
@@ -72,14 +72,14 @@ public class MoveScript : MonoBehaviour
                 break;
             }
         }
-        rb.position = ArenaBoundaryScript.ClampToArena(rb.position);
+        rb.position = arenaBoundary.ClampToArena(rb.position);
     }
 
     void MakeDash()
     {
         if (state != MovementState.Classic || input == Vector2.zero) return;
         
-        if (PlayerStaminaScript.SpendStamina(DashStaminaCost))
+        if (playerStamina.SpendStamina(DashStaminaCost))
         {
             state = MovementState.Dashing;
             _dashDirection = input;
@@ -90,7 +90,7 @@ public class MoveScript : MonoBehaviour
         }
         else
         {
-            PlayerStaminaScript.NotEnoughStamina();
+            playerStamina.NotEnoughStamina();
         }
     }
 

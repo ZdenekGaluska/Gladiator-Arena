@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WalkerMovementScript : MonoBehaviour
+public class Walker : MonoBehaviour
 {
     public float speed = 1f;
     private Rigidbody2D _rb;

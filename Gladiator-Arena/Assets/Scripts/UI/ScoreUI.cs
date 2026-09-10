@@ -2,22 +2,22 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 
-public class ScoreUIScript : MonoBehaviour
+public class ScoreUI : MonoBehaviour
 {
     private float _score = 0;
     private TextMeshProUGUI _scoreText;
-    private PlayerHealthScript _playerHealthScript;
+    private PlayerHealth _playerHealth;
 
     void Start()
     {
-        _playerHealthScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthScript>();
+        _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         _scoreText = GetComponent<TextMeshProUGUI>();
         _scoreText.text = "Score: " + (int)_score;
     }
 
     void FixedUpdate()
     {
-        if (!_playerHealthScript.IsAlive)  return;
+        if (!_playerHealth.IsAlive)  return;
         _score += Time.fixedDeltaTime;
         UpdateScore();
     }

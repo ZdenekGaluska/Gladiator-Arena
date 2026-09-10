@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class ArenaBoundaryScript : MonoBehaviour
+public class ArenaBoundary : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     private float _xMapSize;
     private float _yMapSize;
     public float offset = 0.5f;
     
-    public static ArenaBoundaryScript Instance;
+    public static ArenaBoundary Instance;
 
     void Awake()
     {

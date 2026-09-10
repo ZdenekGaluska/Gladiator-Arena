@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CrowdThrowScript : MonoBehaviour
+public class Mortar : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer MapRenderer;
     private float _arenaSizeX;
@@ -37,7 +37,7 @@ public class CrowdThrowScript : MonoBehaviour
          Vector2 target = (Vector2)playerTransform.position + new Vector2(Mathf.Cos(angleAcc) * offset, Mathf.Sin(angleAcc) * offset);
              
         GameObject fireballObj =  Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
-        BurningAreaScript fireballScript = fireballObj.GetComponent<BurningAreaScript>();
+        Fireball fireballScript = fireballObj.GetComponent<Fireball>();
         fireballScript.ShootFireball(spawnPosition, target);
      }
     }

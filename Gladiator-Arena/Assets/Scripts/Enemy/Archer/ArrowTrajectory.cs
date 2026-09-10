@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ArrowTrajectoryScript : MonoBehaviour
+public class ArrowTrajectory : MonoBehaviour
 {
     private LineRenderer _lR;
     private Transform[]  _points;

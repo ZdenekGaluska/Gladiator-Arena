@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 public class 
-    WizzardScript : MonoBehaviour
+    Wizard : MonoBehaviour
 {
     [SerializeField] private GameObject fireballPrefab;
     private Transform playerTransform;
@@ -195,7 +195,7 @@ public class
 
             yield return new WaitForSeconds(FireballLineCastInterval);
             GameObject fireballObj =  Instantiate(fireballPrefab, new Vector2(0,0), Quaternion.identity);
-            BurningAreaScript fireballScript = fireballObj.GetComponent<BurningAreaScript>();
+            Fireball fireballScript = fireballObj.GetComponent<Fireball>();
             fireballScript.ShootFireball(transform.position, castPosition);
             castPosition += castDirection;
         }
@@ -211,7 +211,7 @@ public class
         {
             yield return new WaitForSeconds(armagedonInterval);
             GameObject fireballObj =  Instantiate(fireballPrefab, new Vector2(0,0), Quaternion.identity);
-            BurningAreaScript fireballScript = fireballObj.GetComponent<BurningAreaScript>();
+            Fireball fireballScript = fireballObj.GetComponent<Fireball>();
             fireballScript.ShootFireball(transform.position, playerTransform.position);
             count++;
         }

@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class PlayerStaminaScript : MonoBehaviour
+public class PlayerStamina : MonoBehaviour
 {
     public float MaxStamina = 100f;
     private float currentStamina = 100f;
@@ -13,11 +14,11 @@ public class PlayerStaminaScript : MonoBehaviour
     private bool _fullStamina = true;
     public bool FullStamina => _fullStamina;
     
-    public UIStaminaScript _uiStaminaScript;
+    [FormerlySerializedAs("_uiStaminaScript")] public StaminaUI staminaUI;
 
     void Start()
     {
-        _uiStaminaScript.UpdateStaminaText(currentStamina, MaxStamina);
+        staminaUI.UpdateStaminaText(currentStamina, MaxStamina);
     }
     
     public bool SpendStamina(float amount)
@@ -26,7 +27,7 @@ public class PlayerStaminaScript : MonoBehaviour
         if (amount <= currentStamina)
         {
             currentStamina -= amount;
-            _uiStaminaScript.UpdateStaminaText(currentStamina, MaxStamina);
+            staminaUI.UpdateStaminaText(currentStamina, MaxStamina);
             return true;
         }
         else return false;
@@ -40,7 +41,7 @@ public class PlayerStaminaScript : MonoBehaviour
     [ContextMenu("Test Not Enough Stamina")]
     public void NotEnoughStamina()
     {
-        _uiStaminaScript.ShowNotEnoughStamina();
+        staminaUI.ShowNotEnoughStamina();
     }
 
     public void RegenStamina()
@@ -54,7 +55,7 @@ public class PlayerStaminaScript : MonoBehaviour
                 currentStamina = MaxStamina;
                 _fullStamina = true;
             }
-            _uiStaminaScript .UpdateStaminaText(currentStamina, MaxStamina);
+            staminaUI .UpdateStaminaText(currentStamina, MaxStamina);
         }
         
     }
